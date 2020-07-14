@@ -5,8 +5,6 @@ Created on Mon Jul 13 13:44:54 2020
 @author: Christopher Martin
 """
 
-
-import numpy as np
 import csv
 
           
