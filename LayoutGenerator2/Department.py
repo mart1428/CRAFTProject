@@ -181,19 +181,6 @@ def run():
     print('=====End of Test 3=====')
 
 
-run_flag = False
+run_flag = True
 if run_flag:
     run()
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-###Note: Need proper encapsulation
-        
-        
