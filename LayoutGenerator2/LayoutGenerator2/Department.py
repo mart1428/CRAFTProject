@@ -185,15 +185,5 @@ run_flag = False
 if run_flag:
     run()
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-###Note: Need proper encapsulation
         
         
