@@ -84,7 +84,7 @@ class LayoutGenerator:
                 insideList.append(0)
             base.append(insideList)
             
-        self.__base = base
+        return base
         
     def printBase(self):
         s = ''
@@ -118,7 +118,47 @@ class LayoutGenerator:
         
     def getBase(self):
         return self.__base
-        
+    
+    def findComb(self, count = 10000):
+        deptList = self.__deptList.copy()
+        totalDept = self.__totalDept
+        cargoList = []
+        for cargo in deptList:
+            cargoList.append(cargo.getCargo())
+          
+        while count != 0:
+            cargoList = []
+            for cargo in deptList:
+                cargoList.append(cargo.getCargo())
+                
+            arrangedCargo = []
+            while len(cargoList) > 0:
+                cargoIdx = random.randint(0,len(cargoList)-1)
+                arrangedCargo.append(cargoList[cargoIdx])
+                cargoList.pop(cargoIdx)
+                
+            # print(arrangedCargo)
+            layout = self.__base.copy()
+            
+            #Assume each dept has area = 1
+            for row in range(len(layout)):
+                for col in range(len(layout[row])):
+                    layout[row][col] = arrangedCargo.pop()
+                    
+                    
+            for i in range(len(layout)):
+                layout[i] = tuple(tuple(layout[i]))
+                
+            layout = tuple(layout)
+            # print(layout)
+            
+            count -= 1
+            
+            if(layout not in self.__generatedLayout):
+                self.__generatedLayout.append(layout)
+                
+    def getGeneratedLayout(self):
+        return self.__generatedLayout
         
 ###############################################################################
 def run():
@@ -154,7 +194,75 @@ def run():
     test3.createBase()
     test3.addDepartment()
     test3.printBase()
+    
+def sub1():
+    print('-----Test 1 Sub 1-----')
+    dept1 = Department(area = 25, shape = 'square', cargo = 1)
+    dept2 = Department(area = 25, shape = 'square', cargo = 2)
+    dept3 = Department(area = 25, shape = 'square', cargo = 3)
+    dept4 = Department(area = 25, shape = 'square', cargo = 4)
+    dept5 = Department(area = 25, shape = 'square', cargo = 5)
+    dept6 = Department(area = 25, shape = 'square', cargo = 6)
+    dept_list = [dept1,dept2,dept3,dept4,dept5,dept6]
+
+    for dept in dept_list:
+        dept.countAreaCombination()
+    test = LayoutGenerator(fLength = 3, fWidth = 2, dept_list = dept_list)
+    test.createBase()
+    test.findComb()
+    # test.printBase()
+    layoutList = test.getGeneratedLayout()
+
+    # print(layoutList)
+    print('LayoutGenerated:',len(layoutList))
+    
+    print('=====End of Test 1 Sub 1=====')
+    print('')
+    print('-----Test 2 Sub 1-----')
+    dept1 = Department(area = 25, shape = 'square', cargo = 1)
+    dept2 = Department(area = 25, shape = 'square', cargo = 2)
+    dept3 = Department(area = 25, shape = 'square', cargo = 3)
+    dept4 = Department(area = 25, shape = 'square', cargo = 4)
+    dept5 = Department(area = 25, shape = 'square', cargo = 5)
+    dept6 = Department(area = 25, shape = 'square', cargo = 6)
+    dept7 = Department(area = 25, shape = 'square', cargo = 7)
+    dept8 = Department(area = 25, shape = 'square', cargo = 8)
+    dept9 = Department(area = 25, shape = 'square', cargo = 9)
+    dept_list = [dept1,dept2,dept3,dept4,dept5,dept6,dept7,dept8,dept9]
+    
+    test2 = LayoutGenerator(fLength = 3, fWidth = 3, dept_list = dept_list)
+    test2.createBase()
+    test2.findComb(10000)
+    layoutList2 = test2.getGeneratedLayout()
+    print('Layout Generated:',len(layoutList2))
+    print('=====End of Test 2 Sub 1=====')
+    print('')
+    print('-----Test 3 Sub 1-----')
+    dept1 = Department(area = 25, shape = 'square', cargo = 1)
+    dept2 = Department(area = 25, shape = 'square', cargo = 2)
+    dept3 = Department(area = 25, shape = 'square', cargo = 3)
+    dept4 = Department(area = 25, shape = 'square', cargo = 4)
+    dept5 = Department(area = 25, shape = 'square', cargo = 5)
+    dept6 = Department(area = 25, shape = 'square', cargo = 6)
+    dept7 = Department(area = 25, shape = 'square', cargo = 7)
+    dept8 = Department(area = 25, shape = 'square', cargo = 8)
+    dept_list=[dept1,dept2,dept3,dept4,dept5,dept6,dept7,dept8]
+    test3 = LayoutGenerator(fLength = 2, fWidth = 4, dept_list = dept_list)
+    
+    test3.createBase()
+    test3.findComb(10000)
+    layoutList3 = test3.getGeneratedLayout()
+    print('Layout Generated:',len(layoutList3))
+    print('=====End of Test 3 Sub 1=====')
+    print('')
+    
 ###############################################################################
-run_flag = True
+run_flag = False
+sub_test1 = True
 if run_flag:
     run()
+    
+if sub_test1:
+    sub1()
+    
+###############################################################################
