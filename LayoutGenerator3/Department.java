@@ -1,4 +1,4 @@
-package com.company;
+package chris.LayoutGenerator;
 
 import java.util.ArrayList;
 import java.util.Scanner;
