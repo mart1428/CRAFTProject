@@ -8,7 +8,7 @@ public class Department {
     private int area;
     private int cargo;                                      //Department Index
     private String shape;
-    private ArrayList<int[]> areaComb = new ArrayList<int[]>();
+    private ArrayList<int[]> areaComb = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
 
 
@@ -16,20 +16,37 @@ public class Department {
     public void details(){
         String s;
         s = "-----Details-----\n" +
-            "Department Name:\t\t" + this.name + "\n" +
-            "Department Area:\t\t" + this.area + "\n" +
-            "Department Cargo:\t\t" + this.cargo + "\n" +
-            "Department Shape:\t\t" + this.shape + "\n"+
+            "Department Name:\t\t\t" + this.name + "\n" +
+            "Department Area:\t\t\t" + this.area + "\n" +
+            "Department Cargo:\t\t\t" + this.cargo + "\n" +
+            "Department Shape:\t\t\t" + this.shape + "\n"+
+//            "Department Area Combination:\t" + this.areaComb.toString() + "\n" +
             "-----------------";
         System.out.println(s);
     }
 
+    public void findAreaComb(){
+        ArrayList<int[]> comb = new ArrayList<int[]>();
+        for(int i = 0; i < this.area+1; i++){
+            for(int j = 0; j < this.area+1; j++){
+                if(i*j == this.area){
+                    int[] tuple = new int[2];
+                    tuple[0] = i;
+                    tuple[1] = j;
+                    comb.add(tuple);
+//                    System.out.println(tuple);
+                }
+            }
+        }
+        this.areaComb = comb;
+    }
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
 
-
-
-
-//-------------Constructors, Getters, and Setters-------------
+    //-------------Constructors, Getters, and Setters-------------
     public Department(String name, int area, int cargo, String shape){
         this.name = name;
         this.area = area;
@@ -109,5 +126,9 @@ public class Department {
 
     public String getShape(){
         return this.shape;
+    }
+
+    public ArrayList<int[]> getAreaComb(){
+        return this.areaComb;
     }
 }
