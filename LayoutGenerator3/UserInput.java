@@ -8,7 +8,7 @@ public class UserInput {
     private int facilityWidth;
     private ArrayList<Department> departmentList = new ArrayList<>();
     private ArrayList<String[]> adjacencyPreference = new ArrayList<>();
-    private ArrayList<Float> closenessRating = new ArrayList<>();
+    private ArrayList<Float> preferenceRating = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
 
     public UserInput() {
@@ -67,7 +67,7 @@ public class UserInput {
                     scanner.nextLine();
                     String[] adj = new String[]{dept1,dept2};
                     this.adjacencyPreference.add(adj);
-                    this.closenessRating.add(rate);
+                    this.preferenceRating.add(rate);
                 }
             }
 
@@ -104,6 +104,10 @@ public class UserInput {
         setFacilityLength(facilityLength);
     }
 
+    public int getFacilityLength(){
+        return this.facilityLength;
+    }
+
     public void setFacilityWidth(int facilityWidth){
         this.facilityWidth = facilityWidth;
         System.out.println("Facility width has been modified.");
@@ -116,6 +120,10 @@ public class UserInput {
         setFacilityWidth(facilityWidth);
     }
 
+    public int getFacilityWidth(){
+        return this.facilityWidth;
+    }
+
     public ArrayList<Department> getDepartmentList(){
         return this.departmentList;
     }
@@ -124,7 +132,7 @@ public class UserInput {
         return this.adjacencyPreference;
     }
 
-    public ArrayList<Float> getClosenessRating(){
-        return this.closenessRating;
+    public ArrayList<Float> getPreferenceRating(){
+        return this.preferenceRating;
     }
 }

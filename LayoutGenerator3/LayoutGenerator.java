@@ -1,6 +1,5 @@
 package chris.LayoutGenerator;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -11,7 +10,8 @@ public class LayoutGenerator {
     private int maxIteration;
     private ArrayList<Department> departmentList;
     private ArrayList<Department[]> result;               //an array containing the result which its adj will be calculated directly
-//    private Array                                         //an array containing closeness rating
+    private ArrayList<Float> closenessRating;                                         //an array containing closeness rating
+    private ArrayList<Float> preferenceRating;
     private Scanner scanner = new Scanner(System.in);
     private Random random = new Random();
 
@@ -19,31 +19,41 @@ public class LayoutGenerator {
     public void findOptimalLayout(){
         ArrayList<ArrayList<Integer>> optimalLayout = new ArrayList<>();
         float optimalScore = 0;
+        int count = 1;
 
         //Need a loop
-        ArrayList<ArrayList<Integer>> layout = new ArrayList<>();
-        layout = createBase();
+        while(count<=this.maxIteration) {
 
-        ArrayList<Integer> departmentIndex = new ArrayList<>();
-        for(int dept = 0; dept <= this.departmentList.size()-1; dept++){
-            departmentIndex.add(this.departmentList.get(dept).getCargo());
-        }
+            System.out.print("Iteration " + count + ".");       //Generating a random Layout
+            ArrayList<ArrayList<Integer>> layout = new ArrayList<>();
+            layout = createBase();
 
-        for(int r = 0; r <= this.facilityWidth-1; r++){
-            ArrayList<Integer> row = layout.get(r);
-            for(int c = 0; c <= this.facilityLength-1; c++){
-
-                int idx = random.nextInt(departmentIndex.size());
-                row.set(c, departmentIndex.get(idx));
-                departmentIndex.remove(idx);
+            ArrayList<Integer> departmentIndex = new ArrayList<>();
+            for (int dept = 0; dept <= this.departmentList.size() - 1; dept++) {
+                departmentIndex.add(this.departmentList.get(dept).getCargo());
             }
-            layout.set(r, row);
+
+            for (int r = 0; r <= this.facilityWidth - 1; r++) {
+                ArrayList<Integer> row = layout.get(r);
+                for (int c = 0; c <= this.facilityLength - 1; c++) {
+
+                    int idx = random.nextInt(departmentIndex.size());
+                    row.set(c, departmentIndex.get(idx));
+                    departmentIndex.remove(idx);
+                }
+                layout.set(r, row);
+            }
+
+            //        System.out.println(layout.toString());
+            System.out.print(".");      //Adjacency Score
+            //Adjacency Score
+
+            System.out.println(".");    //Comparing adjacency score
+
+
+            count++;
+            System.out.println(layout.toString());;
         }
-
-//        System.out.println(layout.toString());
-
-        //Adjacency Score
-
     }
 
     public ArrayList<ArrayList<Integer>> createBase(){
