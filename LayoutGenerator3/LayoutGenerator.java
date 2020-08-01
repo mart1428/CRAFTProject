@@ -9,7 +9,7 @@ public class LayoutGenerator {
     private int facilityWidth;
     private int maxIteration;
     private ArrayList<Department> departmentList;
-    private ArrayList<Department[]> result;               //an array containing the result which its adj will be calculated directly
+    private ArrayList<ArrayList<Integer>> optimalLayout;
     private ArrayList<Float> closenessRating;                                         //an array containing closeness rating
     private ArrayList<Float> preferenceRating;
     private Scanner scanner = new Scanner(System.in);
@@ -25,7 +25,7 @@ public class LayoutGenerator {
         while(count<=this.maxIteration) {
 
             System.out.print("Iteration " + count + ".");       //Generating a random Layout
-            ArrayList<ArrayList<Integer>> layout = new ArrayList<>();
+            ArrayList<ArrayList<Integer>> layout;
             layout = createBase();
 
             ArrayList<Integer> departmentIndex = new ArrayList<>();
@@ -49,7 +49,7 @@ public class LayoutGenerator {
             //Adjacency Score
 
             System.out.println(".");    //Comparing adjacency score
-
+            this.optimalLayout = layout;  //Modify with the most optimal layout
 
             count++;
             System.out.println(layout.toString());;
@@ -66,6 +66,13 @@ public class LayoutGenerator {
             base.add(row);
         }
         return base;
+    }
+
+    public void printOptimalLayout(){
+        ArrayList<ArrayList<Integer>> layout = this.optimalLayout;
+        for(int i = 0; i <= layout.size()-1; i++){
+            System.out.println(layout.get(i).toString());
+        }
     }
 
     //-----Constructors, Getters, Setters-----
