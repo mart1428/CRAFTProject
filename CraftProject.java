@@ -45,7 +45,7 @@ public class CraftProject {
             String layoutStrBeingTested = "";
             //resets "layoutStrBeingTested" variable when a loop is done
             int nextIntInt = -1;
-            //since there is no null value for int, since its a primitive type, basically resets nextIntInt value
+            //since there is no null value for int, since its a primitive type, basically resets nextIntInt value 
             for (int j = 1; j <= numDepts; j++) {
                 int newIntInt = 0;
                 if (j == 4) {
@@ -77,3 +77,4 @@ public class CraftProject {
 
 // note that this current algorithm does not take into account the possibilities of layout being similar to -
 // ALL the previous layout generated
+// Line 48, int is a primitive type but there's a class called Integer with a null value
