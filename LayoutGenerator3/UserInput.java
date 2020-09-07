@@ -1,4 +1,4 @@
-package chris.LayoutGenerator;
+package src;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -44,39 +44,39 @@ public class UserInput {
             }
         } while (flag);
 
-        flag = true;
-        System.out.print("Set adjacency preference[Y/n]: ");
-        String option = scanner.nextLine();
-        if(option.equals("n")){
-            flag = false;
-        }
+//        flag = true;
+//        System.out.print("Set adjacency preference[Y/n]: ");
+//        String option = scanner.nextLine();
+//        if(option.equals("n")){
+//            flag = false;
+//        }
 
-        while(flag){
-            System.out.print("Enter department 1 name: ");
-            String dept1 = scanner.nextLine();
-            if(!hasDept(dept1)){
-                System.out.print("Department could not be found. ");
-            }else{
-                System.out.print("Enter department 2 name: ");
-                String dept2 = scanner.nextLine();
-                if(!hasDept(dept2)){
-                    System.out.print("Department could not be found. ");
-                }else{
-                    System.out.print("Enter closeness rating [1-10]: ");
-                    float rate = scanner.nextFloat();
-                    scanner.nextLine();
-                    String[] adj = new String[]{dept1,dept2};
-                    this.adjacencyPreference.add(adj);
-                    this.preferenceRating.add(rate);
-                }
-            }
-
-            System.out.print("Exit[Y/n]: ");
-            option = scanner.nextLine();
-            if(option.equals("Y")){
-                flag = false;
-            }
-        }
+//        while(flag){
+//            System.out.print("Enter department 1 name: ");
+//            String dept1 = scanner.nextLine();
+//            if(!hasDept(dept1)){
+//                System.out.print("Department could not be found. ");
+//            }else{
+//                System.out.print("Enter department 2 name: ");
+//                String dept2 = scanner.nextLine();
+//                if(!hasDept(dept2)){
+//                    System.out.print("Department could not be found. ");
+//                }else{
+//                    System.out.print("Enter closeness rating [1-10]: ");
+//                    float rate = scanner.nextFloat();
+//                    scanner.nextLine();
+//                    String[] adj = new String[]{dept1,dept2};
+//                    this.adjacencyPreference.add(adj);
+//                    this.preferenceRating.add(rate);
+//                }
+//            }
+//
+//            System.out.print("Exit[Y/n]: ");
+//            option = scanner.nextLine();
+//            if(option.equals("Y")){
+//                flag = false;
+//            }
+//        }
     }
 
     //-----Methods-----
