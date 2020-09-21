@@ -15,3 +15,4 @@ Description:
 
 
 *Final code is written in java and available in Final folder.*
+*PS: The area for each department is being set to 1.*
